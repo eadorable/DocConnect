@@ -11,8 +11,10 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :appointments
-  resources :patients
-  resources :medical_histories, only: [:show]
+  resources :patients do
+    resources :medical_histories
+  end
+
 
   root 'appointments#index'
 end
