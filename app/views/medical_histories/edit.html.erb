@@ -1,0 +1,13 @@
+<h1>I am edit medical history</h1>
+<%= form_with(model: @medical_history, url: patient_medical_history_path(@medical_history.patient, @medical_history), method: :patch) do |form| %>
+
+  <div class="field">
+    <%= form.label :history_details %>
+    <%= form.text_area :history_details %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Save' %>
+  </div>
+
+<% end %>

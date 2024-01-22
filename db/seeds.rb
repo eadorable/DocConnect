@@ -40,4 +40,13 @@ Appointment.create!(
   patient: patient2
 )
 
+Appointment.create!(
+  appointment_date: Time.now,
+  status: 'Scheduled',
+  secretary: secretary,
+  doctor: doctor,
+  patient: patient2
+)
+
+
 puts 'Seed data has been created.'

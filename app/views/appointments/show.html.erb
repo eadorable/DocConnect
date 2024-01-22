@@ -1,0 +1,17 @@
+<h1>Appointment Details</h1>
+
+<p><strong>Patient:</strong> <%= @appointment.patient.name %></p>
+<p><strong>Appointment Date:</strong> <%= @appointment.appointment_date.strftime("%Y-%m-%d %H:%M:%S") %></p>
+<p><strong>Doctor:</strong> <%= @appointment.doctor.name %></p>
+<p><strong>Medical Records: </strong></p>
+<ol>
+  <% @medical_histories.each do |medical_history| %>
+  <li>
+    <%= medical_history.updated_at.strftime("%Y-%m-%d %H:%M") %>- <%= medical_history.history_details %>
+    <%= link_to "Edit", edit_patient_medical_history_path(medical_history, medical_history) %>
+  </li>
+  <% end %>
+</ol>
+
+<%= link_to 'Back', appointments_path %>
+<%= link_to "New", new_patient_medical_history_path(@appointment.patient) %>
