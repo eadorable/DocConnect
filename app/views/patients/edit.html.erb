@@ -1,0 +1,30 @@
+<h1>I am patient edit</h1>
+<%= form_with(model: @patient, url: patient_path(@patient), method: :patch) do |form| %>
+
+  <div>
+    <%= form.label "Full Name:" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label "Address:" %>
+    <%= form.text_field :address %>
+  </div>
+  <div>
+    <%= form.label "Contact Number:" %>
+    <%= form.text_field :contact_number %>
+  </div>
+  <div>
+    <%= form.label "Email:" %>
+    <%= form.text_field :email %>
+  </div>
+  <div>
+    <%= form.label "Date of Birth:" %>
+    <%= form.date_field :date_of_birth %>
+  </div>
+
+  <div>
+    <%= form.submit "Save" %>
+  </div>
+
+<% end %>

@@ -1,2 +1,56 @@
 class PatientsController < ApplicationController
+  before_action :authenticate_user!
+
+  def index
+    @patients = Patient.all
+  end
+
+  def new
+    @patient = Patient.new
+  end
+
+  def create
+    existing_patient = Patient.find_by("TRIM(UPPER(name)) ILIKE ?", params[:patient][:name].squish.upcase)
+
+    if existing_patient
+      redirect_to root_path, notice: 'Patient already exists'
+    else
+
+      @patient = Patient.new(patient_params)
+
+      if @patient.save
+        redirect_to root_path, notice: 'Patient created successfully'
+      else
+        render :new
+      end
+    end
+  end
+
+  def show
+    @patient = Patient.find(params[:id])
+    @medical_history = MedicalHistory.new
+    @medical_histories = @patient.medical_histories
+  end
+
+  def edit
+    @patient = Patient.find(params[:id])
+
+  end
+
+  def update
+    @patient = Patient.find(params[:id])
+
+    if @patient.update(patient_params)
+      redirect_to patients_path, notice: 'Patient updated successfully'
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def patient_params
+    params.require(:patient).permit(:name, :address, :contact_number, :email, :date_of_birth, :gender, :marital_status, :age)
+  end
+
 end

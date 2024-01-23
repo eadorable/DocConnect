@@ -1,0 +1,14 @@
+<h1>I am new appointment</h1>
+
+<%= form_with(model: @appointment, url: appointments_path, method: :post) do |form| %>
+
+  <div>
+    <%= form.label :appointment_date %>
+    <%= form.date_field :appointment_date %>
+  </div>
+
+  <div>
+    <%= form.submit "Save" %>
+  </div>
+
+<% end %>

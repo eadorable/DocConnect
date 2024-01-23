@@ -16,8 +16,28 @@ doctor = User.create!(
 )
 
 # Create sample patients
-patient1 = Patient.create!(name: 'John Doe')
-patient2 = Patient.create!(name: 'Jane Doe')
+patient1 = Patient.create!(
+  name: 'John Doe',
+  address: '123 Main Street',
+  contact_number: '555-1234',
+  email: 'john@example.com',
+  date_of_birth: Date.new(1980, 1, 1),
+  gender: 'Male',
+  marital_status: 'Single',
+  age: 42
+)
+
+patient2 = Patient.create!(
+  name: 'Jane Doe',
+  address: '456 Oak Avenue',
+  contact_number: '555-5678',
+  email: 'jane@example.com',
+  date_of_birth: Date.new(1985, 5, 15),
+  gender: 'Female',
+  marital_status: 'Married',
+  age: 37
+)
+
 
 # Create sample medical histories for patients
 MedicalHistory.create!(patient: patient1, history_details: 'Sample medical history for John Doe')

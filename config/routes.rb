@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   end
 
 
-  root 'appointments#index'
+  # root 'appointments#index'
+  root 'pages#home'
 end
