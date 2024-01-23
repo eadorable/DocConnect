@@ -13,7 +13,7 @@ class PatientsController < ApplicationController
     existing_patient = Patient.find_by("TRIM(UPPER(name)) ILIKE ?", params[:patient][:name].squish.upcase)
 
     if existing_patient
-      redirect_to root_path, notice: 'Patient already exists'
+      redirect_to patients_path, notice: 'Patient already exists'
     else
 
       @patient = Patient.new(patient_params)
@@ -44,6 +44,15 @@ class PatientsController < ApplicationController
       redirect_to patients_path, notice: 'Patient updated successfully'
     else
       render :edit
+    end
+  end
+
+  def destroy
+    @patient = Patient.find(params[:id])
+    if @patient.destroy
+      redirect_to patients_path, notice: 'Patient deleted successfully'
+    else
+      redirect_to patients_path, notice: 'Patient could not be deleted'
     end
   end
 
