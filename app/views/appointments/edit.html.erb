@@ -1,7 +1,7 @@
-<h1>I am new appointment</h1>
+<h1>I am edit appointment</h1>
 
 
-<%= form_with(model: @appointment, url: appointments_path, method: :post) do |f| %>
+<%= form_with(model: @appointment, url: appointment_path, method: :patch) do |f| %>
   <div class="field">
     <%= f.label :appointment_date %>
     <%= f.date_field :appointment_date %>

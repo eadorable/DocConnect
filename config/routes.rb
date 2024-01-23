@@ -10,6 +10,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  resources :doctors
   resources :appointments
   resources :patients do
     resources :medical_histories

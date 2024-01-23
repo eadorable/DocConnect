@@ -24,8 +24,16 @@
       <td><%= patient.date_of_birth.strftime("%m-%d-%Y") %></td>
       <td><%= patient.contact_number %>, <%= patient.email %></td>
       <td>
-        <%= link_to "Edit", edit_patient_path(patient) %>
+
+        <%= link_to(edit_patient_path(patient), class: "btn-btn-outline-secondary") do %>
+          <i class="fas fa-pen-to-square"></i>
+        <% end %>
+
+        <%= link_to(patient_path(patient), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" ) do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
         <%= link_to "Appointment", new_appointment_path %>
+
       </td>
     </tr>
   <% end %>

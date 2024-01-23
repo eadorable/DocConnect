@@ -1,26 +1,28 @@
 # db/seeds.rb
 
-# Create sample users
-secretary = User.create!(
-  name: 'Secretary User',
-  email: 'secretary@example.com',
-  password: 'password',
-  role: :secretary
-)
-
-doctor = User.create!(
-  name: 'Doctor User',
-  email: 'doctor@example.com',
-  password: 'password',
-  role: :doctor
-)
-
-# Create sample patients
-patient1 = Patient.create!(
-  name: 'John Doe',
+# Create doctors
+doctor1 = Doctor.create!(
+  name: 'Dr. Smith',
   address: '123 Main Street',
   contact_number: '555-1234',
-  email: 'john@example.com',
+  email: 'dr.smith@example.com',
+  specialty: 'Cardiology'
+)
+
+doctor2 = Doctor.create!(
+  name: 'Dr. Johnson',
+  address: '456 Oak Avenue',
+  contact_number: '555-5678',
+  email: 'dr.johnson@example.com',
+  specialty: 'Pediatrics'
+)
+
+# Create patients
+patient1 = Patient.create!(
+  name: 'John Doe',
+  address: '789 Elm Street',
+  contact_number: '555-9876',
+  email: 'john.doe@example.com',
   date_of_birth: Date.new(1980, 1, 1),
   gender: 'Male',
   marital_status: 'Single',
@@ -29,44 +31,39 @@ patient1 = Patient.create!(
 
 patient2 = Patient.create!(
   name: 'Jane Doe',
-  address: '456 Oak Avenue',
-  contact_number: '555-5678',
-  email: 'jane@example.com',
+  address: '101 Pine Avenue',
+  contact_number: '555-4321',
+  email: 'jane.doe@example.com',
   date_of_birth: Date.new(1985, 5, 15),
   gender: 'Female',
   marital_status: 'Married',
   age: 37
 )
 
-
-# Create sample medical histories for patients
-MedicalHistory.create!(patient: patient1, history_details: 'Sample medical history for John Doe')
-MedicalHistory.create!(patient: patient2, history_details: 'Sample medical history for Jane Doe')
-
-# Create sample appointments
-Appointment.create!(
-  appointment_date: Time.now + 1.day,
-  status: 'Scheduled',
-  secretary: secretary,
-  doctor: doctor,
-  patient: patient1
+# Create medical histories
+medical_history1 = MedicalHistory.create!(
+  patient: patient1,
+  history_details: 'No significant medical history for John Doe.'
 )
 
-Appointment.create!(
-  appointment_date: Time.now + 2.days,
-  status: 'Scheduled',
-  secretary: secretary,
-  doctor: doctor,
-  patient: patient2
+medical_history2 = MedicalHistory.create!(
+  patient: patient2,
+  history_details: 'No significant medical history for Jane Doe.'
 )
 
-Appointment.create!(
-  appointment_date: Time.now,
-  status: 'Scheduled',
-  secretary: secretary,
-  doctor: doctor,
-  patient: patient2
+# Create appointments
+appointment1 = Appointment.create!(
+  doctor: doctor1,
+  patient: patient1,
+  appointment_date: DateTime.new(2024, 1, 15, 10, 0, 0),
+  status: 'Scheduled'
 )
 
+appointment2 = Appointment.create!(
+  doctor: doctor2,
+  patient: patient2,
+  appointment_date: DateTime.new(2024, 2, 1, 14, 30, 0),
+  status: 'Confirmed'
+)
 
-puts 'Seed data has been created.'
+puts 'Seed data has been created successfully!'
