@@ -1,21 +1,37 @@
-<h1>I am new appointment</h1>
+<div class="container mt-4 min-vh-100">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h1 class="text-center mb-4">New Appointment</h1>
 
+      <%= form_with(model: @appointment, url: appointments_path, method: :post, class: 'needs-validation', novalidate: true) do |f| %>
+        <div class="mb-3">
+          <strong><%= f.label :appointment_date, class: 'form-label' %></strong>
+          <%= f.date_field :appointment_date, class: 'form-control', data:{controller: 'flatpcikr'}, required: true %>
+          <div class="invalid-feedback">
+            Please choose a valid appointment date.
+          </div>
+        </div>
 
-<%= form_with(model: @appointment, url: appointments_path, method: :post) do |f| %>
-  <div class="field">
-    <%= f.label :appointment_date %>
-    <%= f.date_field :appointment_date %>
+        <div class="mb-3">
+          <strong><%= f.label :doctor_id, class: 'form-label' %></strong>
+          <%= f.select :doctor_id, options_from_collection_for_select(@doctors, 'id', 'name'), { prompt: 'Select Doctor' }, class: 'form-select', required: true %>
+          <div class="invalid-feedback">
+            Please select a doctor.
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <strong><%= f.label :patient_id, class: 'form-label' %></strong>
+          <%= f.select :patient_id, options_from_collection_for_select(@patients, 'id', 'name'), { prompt: 'Select Patient' }, class: 'form-select', required: true %>
+          <div class="invalid-feedback">
+            Please select a patient.
+          </div>
+        </div>
+
+        <div class="text-center">
+          <%= f.submit "Book", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :doctor_id %>
-    <%= f.select :doctor_id, options_from_collection_for_select(@doctors, 'id', 'name'), prompt: 'Select Doctor' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :patient_id %>
-    <%= f.select :patient_id, options_from_collection_for_select(@patients, 'id', 'name'), prompt: 'Select Patient' %>
-  </div>
-
-  <%= f.submit "Book" %>
-<% end %>
+</div>

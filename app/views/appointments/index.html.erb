@@ -1,36 +1,14 @@
-<h1>I am Appointment Index</h1>
-
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Appointment_id</th>
-      <th scope="col">Patient_id</th>
-      <th scope="col">Patient_name</th>
-      <th scope="col">Apointment_date</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-  <%@appointments_today.each do |appointments_today| %>
-    <tr>
-      <td><%= appointments_today.id %></td>
-      <td><%= appointments_today.patient_id %></td>
-      <td><%= link_to appointments_today.patient.name, appointment_path(appointments_today) %></td>
-      <td><%= appointments_today.appointment_date.strftime("%d-%m-%Y %H:%M") %></td>
-      <td>
-
-        <%= link_to(edit_appointment_path(appointments_today), class: "btn btn-outline-secondary") do %>
-          <i class="fas fa-pen-to-square"></i>
-        <% end %>
-
-        <%= link_to(appointment_path(appointments_today), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" ) do %>
-          <i class="fas fa-trash-alt"></i>
-        <% end %>
-
-
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <%= link_to "Today", today_appointments_path, class: 'nav-link active' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Upcoming", upcoming_appointments_path, class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "Past", past_appointments_path, class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to "All", all_appointments_path, class: 'nav-link' %>
+  </li>
+</ul>
