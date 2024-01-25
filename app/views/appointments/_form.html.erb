@@ -1,0 +1,34 @@
+<!-- _appointments_table.html.erb -->
+
+<h1>I am Appointment Index</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Appointment_id</th>
+      <th scope="col">Patient_id</th>
+      <th scope="col">Patient_name</th>
+      <th scope="col">Apointment_date</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @appointments.each do |appointment| %>
+      <tr>
+        <td><%= appointment.id %></td>
+        <td><%= appointment.patient_id %></td>
+        <td><%= link_to appointment.patient.name, appointment_path(appointment) %></td>
+        <td><%= appointment.appointment_date.strftime("%d-%m-%Y %H:%M") %></td>
+        <td>
+          <%= link_to(edit_appointment_path(appointment), class: "btn btn-outline-secondary") do %>
+            <i class="fas fa-pen-to-square"></i>
+          <% end %>
+
+          <%= link_to(appointment_path(appointment), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger" ) do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

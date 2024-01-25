@@ -2,9 +2,23 @@ class AppointmentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @appointments_today = Appointment.all.where(appointment_date: Date.today.beginning_of_day..Date.today.end_of_day)
-    # This is for the calendar
-    # @ppointments_date = Time.now.beginning_of_month.beginning_of_week..Time.now.end_of_month.end_of_week
+
+  end
+
+  def today
+    @appointments = Appointment.all.where(appointment_date: Date.today.beginning_of_day..Date.today.end_of_day)
+  end
+
+  def upcoming
+    @appointments = Appointment.all.where(appointment_date: Date.tomorrow.beginning_of_day..Date.tomorrow.end_of_day)
+  end
+
+  def past
+    @appointments = Appointment.all.where(appointment_date: Date.yesterday.beginning_of_day..Date.yesterday.end_of_day)
+  end
+
+  def all
+    @appointments = Appointment.all
   end
 
   def show
