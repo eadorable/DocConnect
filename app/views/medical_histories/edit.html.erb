@@ -1,14 +1,14 @@
 <div class="container mt-4 min-vh-100">
   <div class="text-center mb-4">
-    <h1>I am new_medical_history</h1>
+    <h1 class="text-white">Update Patient's Medical History</h1>
   </div>
 
   <div class="row justify-content-center">
-    <div class="col-lg-6">
+    <div class="col-md-8">
       <%= form_with(model: [@patient, @medical_history], url: patient_medical_history_path(@patient, @medical_history), method: :patch, class: 'needs-validation', novalidate: true) do |form| %>
 
         <div class="mb-3">
-          <%= form.label :history_details, class: 'form-label' %>
+          <%= form.label :history_details, class: 'form-label text-white' %>
           <%= form.text_area :history_details, class: 'form-control', rows: 4, required: true %>
         </div>
 
