@@ -7,4 +7,5 @@ class User < ApplicationRecord
   # Additional fields
   # validates :name, presence: true
   # validates :email, presence: true, uniqueness: true
+  has_many :appointments # doctor
 end

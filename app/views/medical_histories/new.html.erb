@@ -1,13 +1,22 @@
-<h1>I am new_medical_history</h1>
-<%= form_with(model: @medical_history, url: patient_medical_histories_path, method: :post) do |form| %>
-
-  <div class="field">
-    <%= form.label :history_details %>
-    <%= form.text_area :history_details %>
+<div class="container mt-4 min-vh-100">
+  <div class="text-center mb-4">
+    <h1>I am new_medical_history</h1>
   </div>
 
-  <div class="actions">
-    <%= form.submit 'Save' %>
-  </div>
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <%= form_with(model: @medical_history, url: patient_medical_histories_path, method: :post, class: 'needs-validation', novalidate: true) do |form| %>
 
-<% end %>
+        <div class="mb-3">
+          <%= form.label :history_details, class: 'form-label' %>
+          <%= form.text_area :history_details, class: 'form-control', rows: 4, required: true %>
+        </div>
+
+        <div class="text-center">
+          <%= form.submit 'Save', class: 'btn btn-primary' %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

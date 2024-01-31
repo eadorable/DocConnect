@@ -1,30 +1,23 @@
-<h1>I am new patient</h1>
-<%= form_with(model: @patient, url: patients_path, method: :post) do |form| %>
+<div class="container text-white mt-4">
+  <h1 class="text-center">Add new Patient</h1>
 
-  <div>
-    <%= form.label "Full Name:" %>
-    <%= form.text_field :name %>
-  </div>
+  <%= simple_form_for(@patient) do |f| %>
+    <% status = %w[Single Married Divorced Widowed] %>
+    <% gender = %w[Male Female Others] %>
 
-  <div>
-    <%= form.label "Address:" %>
-    <%= form.text_field :address %>
-  </div>
-  <div>
-    <%= form.label "Contact Number:" %>
-    <%= form.text_field :contact_number %>
-  </div>
-  <div>
-    <%= form.label "Email:" %>
-    <%= form.text_field :email %>
-  </div>
-  <div>
-    <%= form.label "Date of Birth:" %>
-    <%= form.date_field :date_of_birth %>
-  </div>
+    <%= f.input :name, label: "Full Name", label_html: { class: 'text-white' } %>
+    <%= f.input :address, label_html: { class: 'text-white' } %>
+    <%= f.input :contact_number, label_html: { class: 'text-white' } %>
+    <%= f.input :email, label_html: { class: 'text-white' } %>
+    <%= f.input :gender, collection: gender, label_html: { class: 'text-white' } %>
+    <%= f.input :marital_status, collection: status, label_html: { class: 'text-white' } %>
+    <%= f.input :date_of_birth, as: :date, start_year: Date.today.year - 90,
+                              end_year: Date.today.year,
+                              order: [:month, :day, :year], label_html: { class: 'text-white' } %>
+    <%= f.input :age, label_html: { class: 'text-white' } %>
+    <%= f.input :weight, label: "Weight(Kg)", label_html: { class: 'text-white' } %>
+    <%= f.input :height, label: "Height(cm)", label_html: { class: 'text-white' } %>
 
-  <div>
-    <%= form.submit "Save" %>
-  </div>
-
-<% end %>
+    <%= f.submit "Save", class: "btn btn-primary mb-4" %>
+  <% end %>
+</div>

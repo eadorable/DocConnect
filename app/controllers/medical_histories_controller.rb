@@ -10,10 +10,13 @@ class MedicalHistoriesController < ApplicationController
 
   def new
     @medical_history = MedicalHistory.new
+    @patient = Patient.find(params[:patient_id])
   end
 
   def edit
     @medical_history = MedicalHistory.find(params[:id])
+    @patient = Patient.find(params[:patient_id])
+
   end
 
   def create
@@ -22,7 +25,7 @@ class MedicalHistoriesController < ApplicationController
     @medical_history.patient = @patient
 
     if @medical_history.save
-      redirect_to appointment_path(@medical_history.patient.appointments.last)
+      redirect_to today_appointments_path
     else
       render 'new'
     end
@@ -33,7 +36,7 @@ class MedicalHistoriesController < ApplicationController
     @patient = Patient.find(params[:patient_id])
     @medical_history.patient = @patient
     if @medical_history.update(medical_history_params)
-      redirect_to appointment_path(@medical_history.patient.appointments.last)
+      redirect_to patient_path(@patient)
     else
       render 'edit'
     end
