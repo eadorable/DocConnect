@@ -2,11 +2,11 @@ class AppointmentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @appointments = Appointment.all
+    @appointments = Appointment.all.where(user_id: current_user.id)
   end
 
   def today
-    @appointments = Appointment.all.where(date: Date.today.beginning_of_day..Date.today.end_of_day)
+    @appointments = Appointment.all.where(date: Date.today.beginning_of_day..Date.today.end_of_day , user_id: current_user.id)
   end
 
   def show
@@ -20,7 +20,7 @@ class AppointmentsController < ApplicationController
 
     # for the dropdown, f.collection_select(:patient_id, Patient.all, :id, :name)
     # @doctors = Doctor.all
-    @patients = Patient.all
+    @patients = Patient.all.where(user_id: current_user.id)
     @patient_collection = @patients.collect { |p| [p.name, p.id] }
   end
 

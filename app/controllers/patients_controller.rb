@@ -2,11 +2,12 @@ class PatientsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @patients = Patient.all
+    @patients = Patient.all.where(user_id: current_user.id)
   end
 
   def new
     @patient = Patient.new
+
   end
 
   def create
@@ -15,8 +16,8 @@ class PatientsController < ApplicationController
     if existing_patient
       redirect_to patients_path, notice: 'Patient already exists'
     else
-
       @patient = Patient.new(patient_params)
+      @patient.user = current_user
 
       if @patient.save
         redirect_to root_path, notice: 'Patient created successfully'
@@ -59,7 +60,7 @@ class PatientsController < ApplicationController
   private
 
   def patient_params
-    params.require(:patient).permit(:name, :address, :contact_number, :email, :date_of_birth, :gender, :marital_status, :age, :weight, :height)
+    params.require(:patient).permit(:name, :address, :contact_number, :email, :date_of_birth, :gender, :marital_status, :age, :weight, :height, :user_id)
   end
 
 end
