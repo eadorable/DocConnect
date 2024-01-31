@@ -1,6 +1,7 @@
 class Patient < ApplicationRecord
   has_many :appointments, dependent: :destroy
   has_many :medical_histories, dependent: :destroy
+  belongs_to :user
 
   validates :name, presence: true, uniqueness: true
   validates :address, presence: true
