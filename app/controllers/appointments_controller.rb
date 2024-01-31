@@ -2,23 +2,11 @@ class AppointmentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-
+    @appointments = Appointment.all
   end
 
   def today
-    @appointments = Appointment.all.where(appointment_date: Date.today.beginning_of_day..Date.today.end_of_day)
-  end
-
-  def upcoming
-    @appointments = Appointment.all.where(appointment_date: Date.tomorrow.beginning_of_day..Date.tomorrow.end_of_day)
-  end
-
-  def past
-    @appointments = Appointment.all.where(appointment_date: Date.yesterday.beginning_of_day..Date.yesterday.end_of_day)
-  end
-
-  def all
-    @appointments = Appointment.all
+    @appointments = Appointment.all.where(date: Date.today.beginning_of_day..Date.today.end_of_day)
   end
 
   def show
@@ -31,20 +19,24 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.new
 
     # for the dropdown, f.collection_select(:patient_id, Patient.all, :id, :name)
-    @doctors = Doctor.all
+    # @doctors = Doctor.all
     @patients = Patient.all
+    @patient_collection = @patients.collect { |p| [p.name, p.id] }
   end
 
   def create
     @appointment = Appointment.new(appointment_params)
+    @appointment.user = current_user
+    @appointment.patient = Patient.find(params[:appointment][:patient_id])
+
 
     if @appointment.save
       redirect_to appointments_path, notice: 'Appointment was successfully created.'
     else
 
       # for the dropdown, f.collection_select(:patient_id, Patient.all, :id, :name)
-      @doctors = Doctor.all
-      @patients = Patient.all
+      # @doctors = Doctor.all
+      # @patients = Patient.all
       render :new
     end
   end
@@ -53,7 +45,7 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
 
     # for the dropdown, f.collection_select(:patient_id, Patient.all, :id, :name)
-    @doctors = Doctor.all
+    # @doctors = Doctor.all
     @patients = Patient.all
   end
 
@@ -65,7 +57,7 @@ class AppointmentsController < ApplicationController
     else
 
       # for the dropdown, f.collection_select(:patient_id, Patient.all, :id, :name)
-      @doctors = Doctor.all
+      # @doctors = Doctor.all
       @patients = Patient.all
       render :edit
     end
@@ -84,7 +76,7 @@ class AppointmentsController < ApplicationController
   private
 
   def appointment_params
-    params.require(:appointment).permit(:appointment_date, :status, :patient_id, :doctor_id)
+    params.require(:appointment).permit(:date, :patient_id, :user_id)
   end
 
 end

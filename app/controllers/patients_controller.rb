@@ -21,7 +21,7 @@ class PatientsController < ApplicationController
       if @patient.save
         redirect_to root_path, notice: 'Patient created successfully'
       else
-        render :new
+        render :new, notice: 'Patient could not be created, check the form for errors'
       end
     end
   end
@@ -59,7 +59,7 @@ class PatientsController < ApplicationController
   private
 
   def patient_params
-    params.require(:patient).permit(:name, :address, :contact_number, :email, :date_of_birth, :gender, :marital_status, :age)
+    params.require(:patient).permit(:name, :address, :contact_number, :email, :date_of_birth, :gender, :marital_status, :age, :weight, :height)
   end
 
 end

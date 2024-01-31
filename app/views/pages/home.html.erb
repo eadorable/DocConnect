@@ -1,66 +1,50 @@
-<div class="container mt-4 d-flex flex-column min-vh-100">
-  <div class="row mx-auto">
-    <div class="col-md-12 mb-4">
-      <h1 class="text-center">Welcome to DocConnect - Your health is our priority!</h1>
+
+<div class="container mt-4 min-vh-100">
+  <h1 class="text-center text-white mb-4">Welcome to DocConnect!</h1>
+
+  <div class="card text-center">
+    <div class="card-header">
+      <h2>View Appointments</h2>
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <%= link_to "All", appointments_path, class: "btn btn-primary" %>
+        <%= link_to "Today", today_appointments_path, class: "btn btn-primary" %>
+      </p>
     </div>
   </div>
 
-  <div class="row mx-auto">
-    <div class="col-md-4 mb-4">
-      <div class="card card--shadow">
-        <div class="card-body">
-          <h5 class="card-title">Appointments</h5>
-          <p class="card-text"><%= link_to "View Appointments", appointments_path, class: "btn btn-primary" %></p>
-        </div>
-      </div>
+  <div class="card text-center mt-4">
+    <div class="card-header">
+      <h2>Book an Appointment</h2>
     </div>
-
-    <div class="col-md-4 mb-4">
-      <div class="card card--shadow">
-        <div class="card-body">
-          <h5 class="card-title">Book an Appointment</h5>
-          <p class="card-text"><%= link_to "Book an Appointment", new_appointment_path, class: "btn btn-primary" %></p>
-        </div>
-      </div>
+    <div class="card-body">
+      <p class="card-text">
+        <%= link_to "Book", new_appointment_path, class: "btn btn-primary" %>
+      </p>
     </div>
-
-    <div class="col-md-4 mb-4">
-      <div class="card card--shadow">
-        <div class="card-body">
-          <h5 class="card-title">Register new Patient</h5>
-          <p class="card-text"><%= link_to "Register new Patient", new_patient_path, class: "btn btn-primary" %></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-4">
-      <div class="card card--shadow">
-        <div class="card-body">
-          <h5 class="card-title">List of Patients</h5>
-          <p class="card-text"><%= link_to "List of Patients", patients_path, class: "btn btn-primary" %></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-4">
-      <div class="card card--shadow">
-        <div class="card-body">
-          <h5 class="card-title">List of Doctors</h5>
-          <p class="card-text"><%= link_to "List of Doctors", doctors_path, class: "btn btn-primary" %></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4 mb-4">
-      <div class="card card--shadow">
-        <div class="card-body">
-          <h5 class="card-title">Add new Doctor</h5>
-          <p class="card-text"><%= link_to "Add new Doctor", new_doctor_path, class: "btn btn-primary" %></p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Repeat the pattern for other links -->
-
   </div>
+
+  <div class="card text-center mt-4">
+    <div class="card-header">
+      <h2>Register new Patient</h2>
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <%= link_to "Register", new_patient_path, class: "btn btn-primary" %>
+      </p>
+    </div>
+  </div>
+
+  <div class="card text-center mt-4 mb-4 ">
+    <div class="card-header">
+      <h2>View List of Patients</h2>
+    </div>
+    <div class="card-body">
+      <p class="card-text">
+        <%= link_to "View", patients_path, class: "btn btn-primary" %>
+      </p>
+    </div>
+  </div>
+
 </div>
