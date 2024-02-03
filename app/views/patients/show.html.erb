@@ -1,23 +1,31 @@
 <div class="container mt-4 min-vh-100">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center roboto-black-italic">
     <div class="col-lg-8">
-      <div class="card">
-        <div class="card-body">
-          <h1 class="card-title text-center">Medical History</h1>
-          <p class="card-text"><strong>Name: </strong><%= @patient.name %></p>
-          <p class="card-text"><strong>Age: </strong><%= @patient.age %></p>
-          <p class="card-text"><strong>Weight(Kg): </strong><%= @patient.weight %></p>
-          <p class="card-text"><strong>Height(cm): </strong><%= @patient.height %></p>
+      <% if @patient.present? %>
+        <div class="card">
+          <div class="card-body">
+            <h1 class="card-title text-center">Medical History</h1>
+            <p class="card-text"><strong>Name: </strong><%= @patient.name %></p>
+            <p class="card-text"><strong>Age: </strong><%= @patient.age %></p>
+            <p class="card-text"><strong>Weight(Kg): </strong><%= @patient.weight %></p>
+            <p class="card-text"><strong>Height(cm): </strong><%= @patient.height %></p>
+          </div>
+          <% if @patient.medical_histories.present? %>
+            <% @patient.medical_histories.sort_by(&:updated_at).reverse.each do |medical_history| %>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <strong><%= medical_history.updated_at.strftime("%m-%d-%Y") %></strong>: <%= medical_history.history_details %>
+                  <%= link_to raw('<i class="fas fa-pencil-alt"></i>'), edit_patient_medical_history_path(medical_history.patient_id, medical_history.id), title: "Edit", class: "btn btn-link" %>
+                </li>
+              </ul>
+            <% end %>
+          <% else %>
+            <p class="text-center mt-3">No medical history available for this patient.</p>
+          <% end %>
         </div>
-        <% @patient.medical_histories.sort_by(&:updated_at).reverse.each do |medical_history| %>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-              <strong><%= medical_history.updated_at.strftime("%m-%d-%Y") %></strong>: <%= medical_history.history_details %>
-              <%= link_to raw('<i class="fas fa-pencil-alt"></i>'),  edit_patient_medical_history_path(medical_history.patient_id, medical_history.id), title: "Edit", class: "btn btn-link" %>
-            </li>
-          </ul>
-        <% end %>
-      </div>
+      <% else %>
+        <p class="text-center mt-3">Patient not found.</p>
+      <% end %>
     </div>
   </div>
 </div>
