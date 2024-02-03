@@ -1,14 +1,15 @@
 <div class="container mt-4 min-vh-100">
   <div class="text-center mb-4">
-    <h1 class="roboto-black-italic">I am new_medical_history</h1>
+    <h1 class="roboto-black-italic text-white">Add New Medical Findings</h1>
   </div>
 
   <div class="row justify-content-center">
     <div class="col-lg-6">
       <%= form_with(model: @medical_history, url: patient_medical_histories_path, method: :post, class: 'needs-validation', novalidate: true) do |form| %>
 
-        <div class="mb-3">
-          <%= form.label :history_details, class: 'form-label' %>
+        <div class="mb-3 text-white">
+          <%= form.label :details, class: 'form-label', label: "Details" %>
+
           <%= form.text_area :history_details, class: 'form-control', rows: 4, required: true %>
         </div>
 
