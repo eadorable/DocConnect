@@ -7,14 +7,17 @@ import flatpickr from "flatpickr";
 export default class extends Controller {
   connect() {
 
-    flatpickr(this.element, {
+    flatpickr(".appointment_date", {
       enableTime: true,
       dateFormat: "F j, Y H:i K",
       defaultDate: "today",
       minuteIncrement: 30,
+    })
 
-
-
+    flatpickr(".birth_date", {
+      enableTime: true,
+      dateFormat: "F j, Y",
+      defaultDate: "today"
     })
   }
 }

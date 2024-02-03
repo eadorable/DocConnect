@@ -1,5 +1,5 @@
 <div class="container min-vh-100">
-  <h1 class="text-white text-center mt-4 roboto-black-italic">Registered Patients</h1>
+  <h1 class="text-white text-center mt-4 roboto-black-italic">You Have <%= @patients.count  %> Registered <%= @patients.count > 1 ? "Patients" : "Patient"  %></h1>
 
   <% if @patients.present? %>
     <div class="table-responsive mt-4 mb-4">
@@ -27,14 +27,14 @@
               <td><%= patient.date_of_birth.strftime("%m-%d-%Y") %></td>
               <td><%= "#{patient.contact_number}, #{patient.email}" %></td>
               <td>
-                <%= link_to(edit_patient_path(patient), class: "btn btn-outline-secondary m-1") do %>
-                  <i class="fas fa-edit"></i>
-                <% end %>
+
+                <%= link_to raw('<i class="fas fa-pencil-alt"></i>'), edit_patient_path(patient), title: "Edit", class: "btn btn-link" %>
 
                 <% if current_user.admin? || current_user.superadmin? %>
-                  <%= link_to(patient_path(patient), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-outline-danger m-1" ) do %>
-                    <i class="fas fa-trash-alt"></i>
+                  <%= link_to(patient_path(patient), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-link" ) do %>
+                    <i class="fas fa-trash-alt" style="color: red;"></i>
                   <% end %>
+
                 <% end %>
               </td>
             </tr>

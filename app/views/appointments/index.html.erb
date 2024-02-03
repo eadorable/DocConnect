@@ -9,7 +9,7 @@
 
   <% if @appointments.present? %>
     <div class="table-responsive">
-      <table class="table table-bordered border-primary">
+      <table class="table table-bordered table-striped">
         <thead>
           <tr class="text-center">
             <th scope="col">Date</th>
@@ -42,9 +42,13 @@
                     <%= link_to(new_patient_medical_history_path(appointment.patient_id), class: "m-1") do %>
                       <i class="fas fa-plus"></i>Add
                     <% end %>
+
                   </div>
                 <% else %>
                   <p>No medical history available.</p>
+                    <%= link_to(new_patient_medical_history_path(appointment.patient_id), class: "m-1") do %>
+                      <i class="fas fa-plus"></i>Add
+                    <% end %>
                 <% end %>
               </td>
             </tr>
