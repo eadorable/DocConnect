@@ -1,4 +1,5 @@
 class MedicalHistoriesController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @medical_histories = MedicalHistory.all

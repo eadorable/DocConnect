@@ -1,25 +1,54 @@
-<h2>Sign up</h2>
+<!--
 
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= f.error_notification %>
+<div class="container mt-4 min-vh-100">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <h2 class="text-center text-white roboto-black-italic">Sign up</h2>
 
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "email" }%>
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password" } %>
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password" } %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'needs-validation' }) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="mb-3">
+          <%= f.label :email, class: "text-white" %>
+          <%= f.input :email,
+                      required: true,
+                      autofocus: true,
+                      label: false, # Set label to false only for explicit label
+                      input_html: { class: 'form-control', autocomplete: 'email' } %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :password, class: "text-white" %>
+          <%= f.input :password,
+                      required: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                      label: false, # Set label to false only for explicit label
+                      input_html: { class: 'form-control', autocomplete: 'new-password' } %>
+        </div>
+
+        <div class="mb-3">
+          <%= f.label :password_confirmation, class: "text-white" %>
+          <%= f.input :password_confirmation,
+                      required: true,
+                      label: false, # Set label to false only for explicit label
+                      input_html: { class: 'form-control', autocomplete: 'new-password' } %>
+        </div>
+
+        <div class="text-center">
+          <%= f.button :submit, "Sign up", class: 'btn btn-primary text-white' %>
+        </div>
+      <% end %>
+    </div>
   </div>
+</div>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Sign up" %>
+-->
+
+<div class="container mt-4 min-vh-100">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <h2 class="text-center text-white roboto-black-italic">Contact DocConnect Support Team</h2>
+
+    </div>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

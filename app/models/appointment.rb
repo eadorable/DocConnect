@@ -4,4 +4,5 @@ class Appointment < ApplicationRecord
 
   validates :date, presence: true
   validates :patient_id, presence: true
+
 end
