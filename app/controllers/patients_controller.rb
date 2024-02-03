@@ -18,9 +18,12 @@ class PatientsController < ApplicationController
     else
       @patient = Patient.new(patient_params)
       @patient.user = current_user
+      # @patient.age = (Date.today.year - @patient.date_of_birth.year)
+      @patient.name = @patient.name.squish.upcase
+      @patient.email = @patient.email.squish.downcase
 
       if @patient.save
-        redirect_to root_path, notice: 'Patient created successfully'
+        redirect_to patients_path, notice: 'Patient created successfully'
       else
         render :new, notice: 'Patient could not be created, check the form for errors'
       end
