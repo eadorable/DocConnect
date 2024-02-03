@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  VALID_ROLES = %w[admin user].freeze
+  VALID_ROLES = %w[admin user superadmin].freeze
 
   validates :role, inclusion: { in: VALID_ROLES }
 

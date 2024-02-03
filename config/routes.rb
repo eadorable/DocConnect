@@ -8,7 +8,9 @@
 # end
 
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: 'registrations' }
+  devise_for :users, controllers: {
+  registrations: 'superadmin/registrations'
+}
 
   resources :appointments do
     collection do
@@ -22,4 +24,5 @@ Rails.application.routes.draw do
 
   # root 'appointments#index'
   root 'pages#home'
+
 end

@@ -40,6 +40,8 @@
           <%= f.select :role, User::VALID_ROLES, { prompt: 'Select Role' }, class: 'form-control' %>
         </div>
 
+        <%= f.hidden_field :superadmin, value: resource.superadmin? ? '1' : '0' %>
+
         <div class="text-center">
           <%= f.button :submit, "Sign up", class: 'btn btn-primary text-white' %>
         </div>
@@ -47,6 +49,7 @@
     </div>
   </div>
 </div>
+
 
 
 
