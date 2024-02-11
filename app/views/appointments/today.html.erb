@@ -24,7 +24,7 @@
         <tbody>
           <% @appointments.each do |appointment| %>
             <tr>
-              <td><%= appointment.date&.strftime("%m-%d-%Y") %></td>
+              <td><%= appointment.date&.strftime("%Y-%m-%d %H:%M") %></td>
               <td><%= appointment.patient.name %></td>
               <td><%= appointment.patient.age %></td>
               <td><%= appointment.patient.height %></td>
@@ -61,4 +61,5 @@
   <% else %>
     <p>No appointments available.</p>
   <% end %>
+  
 </div>

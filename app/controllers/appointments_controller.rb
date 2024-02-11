@@ -2,8 +2,10 @@ class AppointmentsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    # @appointments = Appointment.where("user_id = ? AND DATE(date) <= ?", current_user.id, Date.yesterday)
     @appointments = Appointment.all.where(user_id: current_user.id)
   end
+
 
   def today
     @appointments = Appointment.all.where(date: Date.today.beginning_of_day..Date.today.end_of_day , user_id: current_user.id)
