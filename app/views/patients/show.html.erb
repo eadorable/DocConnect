@@ -14,8 +14,11 @@
             <% @patient.medical_histories.sort_by(&:updated_at).reverse.each do |medical_history| %>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                  <strong><%= medical_history.updated_at.strftime("%m-%d-%Y") %></strong>: <%= medical_history.history_details %>
-                  <%= link_to raw('<i class="fas fa-pencil-alt"></i>'), edit_patient_medical_history_path(medical_history.patient_id, medical_history.id), title: "Edit", class: "btn btn-link" %>
+                  <strong><%= medical_history.updated_at.strftime("%m-%d-%Y %I:%M %p") %></strong>: <%= medical_history.history_details %>
+
+                  <% if medical_history.created_at.to_date == Date.today %>
+                    <%= link_to raw('<i class="fas fa-pencil-alt"></i>'), edit_patient_medical_history_path(medical_history.patient_id, medical_history.id), title: "Edit", class: "btn btn-link" %>
+                  <% end %>
                 </li>
               </ul>
             <% end %>

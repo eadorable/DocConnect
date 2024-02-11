@@ -31,7 +31,8 @@
               <td>
                 <% if appointment.patient.medical_histories.any? %>
                   <% appointment.patient.medical_histories.last(2).sort_by(&:updated_at).reverse.each do |history| %>
-                    <p><strong><%= history.updated_at.strftime("%m-%d-%Y") %></strong>: <%= history.history_details %></p>
+                    <p><strong><%= history.updated_at.strftime("%m-%d-%Y %I:%M %p") %></strong>: <%= history.history_details %></p>
+
                   <% end %>
 
                   <div class="btn-group">

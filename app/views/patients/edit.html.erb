@@ -1,7 +1,7 @@
 <div class="container text-white mt-4">
   <h1 class="text-center roboto-black-italic">Update Patient's Information</h1>
 
-  <%= simple_form_for(@patient, method: :patch) do |f| %>
+  <%= simple_form_for(@patient, method: :patch, data:{controller: "flatpcikr"}) do |f| %>
     <% status = %w[Single Married Divorced Widowed] %>
     <% gender = %w[Male Female Others] %>
 
@@ -11,9 +11,10 @@
     <%= f.input :email, label_html: { class: 'text-white' } %>
     <%= f.input :gender, collection: gender, label_html: { class: 'text-white' } %>
     <%= f.input :marital_status, collection: status, label_html: { class: 'text-white' } %>
-    <%= f.input :date_of_birth, as: :date, start_year: Date.today.year - 90,
-                              end_year: Date.today.year,
-                              order: [:month, :day, :year], label_html: { class: 'text-white' } %>
+
+    <%= f.label :date_of_birth, class: "text-white" %>
+    <%= f.datetime_field :date_of_birth, class: 'form-control birth_date mb-4', label: 'Date of Birth' %>
+
     <%= f.input :age, label_html: { class: 'text-white' } %>
     <%= f.input :weight, label: "Weight(Kg)", label_html: { class: 'text-white' } %>
     <%= f.input :height, label: "Height(cm)", label_html: { class: 'text-white' } %>

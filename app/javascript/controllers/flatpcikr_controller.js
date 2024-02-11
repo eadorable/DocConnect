@@ -11,6 +11,7 @@ export default class extends Controller {
       enableTime: true,
       dateFormat: "F j, Y H:i K",
       defaultDate: "today",
+      minDate: "today", // Disable previous dates
       minuteIncrement: 30,
     })
 
