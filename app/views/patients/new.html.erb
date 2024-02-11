@@ -11,7 +11,11 @@
     <%= f.input :email, label_html: { class: 'text-white' } %>
     <%= f.input :gender, collection: gender, label_html: { class: 'text-white' } %>
     <%= f.input :marital_status, collection: status, label_html: { class: 'text-white' } %>
-    <%= f.datetime_field :date_of_birth, class: 'form-control birth_date mb-4' %>
+
+    <%= f.label :date_of_birth, class: "text-white" %>
+    <%= f.datetime_field :date_of_birth, class: 'form-control birth_date mb-4', label: 'Date of Birth' %>
+
+
     <%= f.input :age, label_html: { class: 'text-white' } %>
     <%= f.input :weight, label: "Weight(Kg)", label_html: { class: 'text-white' } %>
     <%= f.input :height, label: "Height(cm)", label_html: { class: 'text-white' } %>
